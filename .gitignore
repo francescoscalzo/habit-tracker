@@ -1,13 +1,19 @@
-# Dependencies
-node_modules/
-npm-debug.log*
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Test
+.pytest_cache/
 
 # Environment
 .env
 .env.local
 
-# Logs
-*.log
+# Claude Code (keep plans only)
+.claude/settings.local.json
 
 # OS
 .DS_Store
@@ -17,6 +23,5 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Build
-dist/
-build/
+# Logs
+*.log
