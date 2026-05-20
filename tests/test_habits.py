@@ -7,7 +7,7 @@ async def test_create_habit_valid(client: AsyncClient):
     data = response.json()
     assert data["name"] == "Sport"
     assert data["emoji"] == "💪"
-    assert data["userId"] == "default"
+    assert data["userId"] == "test-user-id"
     assert "id" in data
     assert "createdAt" in data
 
@@ -63,6 +63,8 @@ async def test_stats_happy(client: AsyncClient):
     assert isinstance(data["successRate"], float)
     assert len(data["last30days"]) == 30
     assert all(isinstance(v, bool) for v in data["last30days"])
+    assert len(data["last90days"]) == 90
+    assert all(isinstance(v, bool) for v in data["last90days"])
 
 
 async def test_stats_not_found(client: AsyncClient):

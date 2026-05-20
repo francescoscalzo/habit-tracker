@@ -27,3 +27,4 @@ class StatsOut(BaseModel):
     longestStreak: int
     successRate: float
     last30days: list[bool]
+    last90days: list[bool]

@@ -3,7 +3,12 @@ import pytest
 from httpx import ASGITransport, AsyncClient
 from unittest.mock import patch
 
+from src.auth.dependencies import get_current_user_id
 from src.main import app
+
+TEST_USER_ID = "test-user-id"
+
+app.dependency_overrides[get_current_user_id] = lambda: TEST_USER_ID
 
 
 @pytest.fixture(autouse=True)

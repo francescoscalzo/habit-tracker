@@ -11,7 +11,6 @@ async def get_stats(habit_id: str, created_at: str) -> StatsOut:
 
     total_check_ins = len(checked_dates)
 
-    # currentStreak (strict): count consecutive days ending today
     today = datetime.now(timezone.utc).date()
     d = today
     current_streak = 0
@@ -19,7 +18,6 @@ async def get_stats(habit_id: str, created_at: str) -> StatsOut:
         current_streak += 1
         d -= timedelta(days=1)
 
-    # longestStreak
     if not checked_dates:
         longest_streak = 0
     else:
@@ -36,15 +34,18 @@ async def get_stats(habit_id: str, created_at: str) -> StatsOut:
                 current = 1
         longest_streak = longest
 
-    # successRate: checkIns / days since creation (min 1)
     created_date = date.fromisoformat(created_at[:10])
     days_since = (today - created_date).days + 1
     success_rate = round(total_check_ins / max(days_since, 1), 2)
 
-    # last30days: [0] = today, [29] = 30 days ago
     last30days = [
         (today - timedelta(days=i)).isoformat() in checked_dates
         for i in range(30)
+    ]
+
+    last90days = [
+        (today - timedelta(days=i)).isoformat() in checked_dates
+        for i in range(90)
     ]
 
     return StatsOut(
@@ -54,4 +55,5 @@ async def get_stats(habit_id: str, created_at: str) -> StatsOut:
         longestStreak=longest_streak,
         successRate=success_rate,
         last30days=last30days,
+        last90days=last90days,
     )

@@ -46,3 +46,10 @@ Implementation plans live in `.claude/plans/` (versioned in repo). Plan mode wri
 ## Teaching constraint
 
 Course material. Prefer patterns shown in spec's example code over more idiomatic alternatives students haven't been taught yet. If a "better" way appears (DI, repository pattern, etc.), keep it for L4 — L3 deliberately stays flat.
+
+## Active Technologies
+- Python 3.11+ (backend) · TypeScript (frontend, Bolt.new) (001-l4-frontend-ai-coach)
+- Redis 7 (Docker) — key-value, no ORM (001-l4-frontend-ai-coach)
+
+## Recent Changes
+- 001-l4-frontend-ai-coach: Added Python 3.11+ (backend) · TypeScript (frontend, Bolt.new)
